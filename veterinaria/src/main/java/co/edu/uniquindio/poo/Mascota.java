@@ -13,3 +13,4 @@ public record Mascota(String id,String nombre, String especie, String raza,int e
         assert peso > 0 :"El peso debe ser mayor a 0";
     }
 }
+
