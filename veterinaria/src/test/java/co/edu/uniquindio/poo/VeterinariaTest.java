@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
-public class MascotTest {
-    private static final Logger LOG = Logger.getLogger(MascotTest.class.getName());
+public class VeterinariaTest {
+    private static final Logger LOG = Logger.getLogger(VeterinariaTest.class.getName());
 
     @Test
     public void testMascotaDatosCompletos() {
