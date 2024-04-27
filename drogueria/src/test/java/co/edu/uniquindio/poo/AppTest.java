@@ -8,7 +8,6 @@
 package co.edu.uniquindio.poo;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
@@ -24,12 +23,13 @@ public class AppTest {
     @Test
     public void shouldAnswerWithTrue() {
         LOG.info("Iniciado test shouldAnswerWithTrue");
-        assertTrue(true);
-        LOG.info("Finalizando test shouldAnswerWithTrue");
-    }
-    @Test
-    public void datosVacios(){
-        LOG.info("inicio de la prueba");
-        assertThrows(Throwable.class,()-> new Estudiante(0, null, null, null, null, 0));
+        Drogueria drogueria= new Drogueria("La 13");
+        Producto producto1= new Producto("145", "loratadina", "Medicamento para las alergias", 15000, 5, "Superdrogueria");
+        Producto producto2= new Producto("145", "loratadina", "Medicamento para las alergias", 15000, 5, "Superdrogueria");
+        drogueria.agregarProucto(producto1);
+        
+        assertThrows(Throwable.class,()->drogueria.agregarProucto(producto2)); 
+
+       LOG.info("Finalizando test shouldAnswerWithTrue");
     }
 }
