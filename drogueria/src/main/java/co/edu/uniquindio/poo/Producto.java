@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo;
 
-public  class Producto {
+public abstract class Producto {
     private final String codigoProducto;
     private final String nombre;
     private final String descripcion;

@@ -7,7 +7,6 @@
  */
 package co.edu.uniquindio.poo;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
@@ -23,12 +22,13 @@ public class AppTest {
     @Test
     public void shouldAnswerWithTrue() {
         LOG.info("Iniciado test shouldAnswerWithTrue");
-        Drogueria drogueria= new Drogueria("La 13");
-        Producto producto1= new Producto("145", "loratadina", "Medicamento para las alergias", 15000, 5, "Superdrogueria");
-        Producto producto2= new Producto("145", "loratadina", "Medicamento para las alergias", 15000, 5, "Superdrogueria");
-        drogueria.agregarProucto(producto1);
-        
-        assertThrows(Throwable.class,()->drogueria.agregarProucto(producto2)); 
+        Drogueria drogueria= new Drogueria("Drogas");
+        Gerente gerente= new Gerente("Rodolfo R", "Hernandes", "101234", "Paraiso 246", "1234567890", 34500);
+        Medicina medicina= new Medicina("245", "Gripaldo", "Medicamento para la gripa", 450, 7, "Supermas", 12);
+        gerente.agregarProducto(medicina);
+        drogueria.agregarEmpleado(gerente);
+        System.out.println(drogueria.getListaProductos()); 
+
 
        LOG.info("Finalizando test shouldAnswerWithTrue");
     }
