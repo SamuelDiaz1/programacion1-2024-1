@@ -1,7 +1,6 @@
 package co.edu.uniquindio.poo;
 
-import java.util.Collection;
-import java.util.LinkedList;
+
 
 public class Empleado extends Persona{
     private final double salario;
@@ -14,24 +13,6 @@ public class Empleado extends Persona{
     public double getSalario() {
         return salario;
     }
-    public boolean verificarCodigoProductoExiste(String codigoProducto){
-        Collection <Producto> listaProductos =new LinkedList<>();
-        boolean existe= false;
-        for (Producto producto : listaProductos) {
-            if (producto.getCodigoProducto().equals(codigoProducto)) {
-                existe=true;
-            }
-        }
-        return existe;
-        
-      
-    }
-    public void agregarProducto(Producto producto){
-        Drogueria drogueria= new Drogueria(getNombres());
-        assert( verificarCodigoProductoExiste(producto.getCodigoProducto())==false):"El producto ya existe";
-        drogueria.getListaProductos().add(producto);
-        
 
-    }
     
 }
