@@ -1,18 +1,20 @@
 package co.edu.uniquindio.poo;
 
 public enum Material {
+
     ARENA(10000.0),
     GRAMA_SINTETICA(35000.0),
     GRAMA_NATURAL(20000.0),
     ASFALTO(40000.0);
 
-    private double costoMetroCuadrado;
+    private final double valorMetroCuadrado;
 
-    Material(double costoMetroCuadrado) {
-        this.costoMetroCuadrado = costoMetroCuadrado;
+    private Material(double valorMetroCuadrado) {
+        this.valorMetroCuadrado = valorMetroCuadrado;
     }
 
-    public double getCostoMetroCuadrado() {
-        return costoMetroCuadrado;
+    public double getValorMetroCuadrado() {
+        return valorMetroCuadrado;
     }
+
 }

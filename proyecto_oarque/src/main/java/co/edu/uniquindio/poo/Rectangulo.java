@@ -1,21 +1,26 @@
 package co.edu.uniquindio.poo;
 
-public class Rectangulo  {
-    private final double base;
-    private final double altura;
-    public Rectangulo( double base, double altura) {
 
-        this.base = base;
-        this.altura = altura;
-        assert  base>0:"La base debe ser mayor a cero";
-        assert  altura>0:"La altura debe ser mayor a cero";
+public class Rectangulo extends FiguraGeometrica {
+    private final double ancho;
+    private final double alto;
 
+    public Rectangulo(double ancho, double alto) {
+        assert ancho > 0: "Error, no se puede crear un rectángulo con ancho negativo";
+        assert alto > 0: "Error, no se puede crear un rectángulo con alto negativo";
+       
+        this.ancho = ancho;
+        this.alto = alto;
     }
-    public double getAreaRectangulo() {
-        return base*altura;
+
+    public double getAncho() {
+        return ancho;
     }
-    
-    
+    public double getLargo() {
+        return alto;
+    }
 
-
+    public double calcularArea() {
+        return ancho * alto;
+    }
 }
