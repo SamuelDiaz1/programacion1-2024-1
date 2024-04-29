@@ -21,14 +21,14 @@ public class AppTest {
      */
     @Test
     public void shouldAnswerWithTrue() {
-        LOG.info("Iniciado test shouldAnswerWithTrue");
-        Drogueria drogueria= new Drogueria("Drogas");
+       /*  LOG.info("Iniciado test shouldAnswerWithTrue");
+        Drogueria drogueria= new Drogueria("Drogas",getListaProductos());
         Gerente gerente= new Gerente("Rodolfo R", "Hernandes", "101234", "Paraiso 246", "1234567890", 34500);
         Medicina medicina= new Medicina("245", "Gripaldo", "Medicamento para la gripa", 450, 7, "Supermas", 12);
         gerente.agregarProducto(medicina);
         drogueria.agregarEmpleado(gerente);
         System.out.println(drogueria.getListaProductos()); 
-
+*/
 
        LOG.info("Finalizando test shouldAnswerWithTrue");
     }

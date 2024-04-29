@@ -9,14 +9,14 @@ import java.util.LinkedList;
  */
 public class Drogueria {
     private final String nombre;
-    protected final Collection <Producto> listaProductos;
+    private final Collection <Producto> listaProductos;
     private final Collection <Cliente> listaClientes;
     private final Collection <Pedido> listaPedidos;
     private final Collection <Empleado> listaEmpleados;
 
 
 
-    public Drogueria(String nombre) {
+    public Drogueria(String nombre, Collection <Producto> listaProductos) {
         this.nombre = nombre;
         this.listaProductos=new LinkedList<>();
         this.listaClientes=new LinkedList<>();

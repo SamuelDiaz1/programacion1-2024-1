@@ -1,18 +1,18 @@
 package co.edu.uniquindio.poo;
 
-import java.util.Collection;
-import java.util.LinkedList;
+
 
 public class Gerente extends Empleado {
+    Drogueria drogueria;
 
     public Gerente(String nombres, String apellidos, String dni, String direccion, String telefono, double salario) {
         super(nombres, apellidos, dni, direccion, telefono, salario);
+        this.drogueria=new Drogueria("",null);
         //TODO Auto-generated constructor stub
     }
         public boolean verificarCodigoProductoExiste(String codigoProducto){
-        Collection <Producto> listaProductos =new LinkedList<>();
         boolean existe= false;
-        for (Producto producto : listaProductos) {
+        for (Producto producto :drogueria.getListaProductos()) {
             if (producto.getCodigoProducto().equals(codigoProducto)) {
                 existe=true;
             }
@@ -22,13 +22,15 @@ public class Gerente extends Empleado {
       
     }
     public void agregarProducto(Producto producto){
-        Drogueria drogueria= new Drogueria(getNombres());
-        assert( verificarCodigoProductoExiste(producto.getCodigoProducto())==false):"El producto ya existe";
-        drogueria.getListaProductos().add(producto);
-        
 
+        if(!verificarCodigoProductoExiste(producto.getCodigoProducto())){
+            this.drogueria.getListaProductos().add(producto);
+        }
     }
-    public void eliminarProducto(String codigoProducto){
+    public void eliminarProducto(Producto producto){
+        if (!verificarCodigoProductoExiste(producto.getCodigoProducto())){
+            drogueria.getListaProductos().remove(producto);
+        }
         
     }
 
