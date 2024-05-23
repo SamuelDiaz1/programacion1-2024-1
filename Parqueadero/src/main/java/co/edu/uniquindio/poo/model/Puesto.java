@@ -1,0 +1,33 @@
+package co.edu.uniquindio.poo.model;
+
+public class Puesto {
+    private final int coordenadaI;
+    private final int coordenadaJ;
+    private Vehiculo vehiculo;
+    public Puesto(int  coordenadaI, int coordenadaJ) {
+        this.coordenadaI = coordenadaI;
+        this.coordenadaJ = coordenadaJ;
+        this.vehiculo = null;
+        assert  coordenadaI > 0: "La coordenada I debe ser mayor que 0";
+        assert  coordenadaJ > 0: "La coordenada J debe ser mayor que 0";
+
+    }
+    public boolean isOcupado() {
+        return vehiculo != null;
+    }
+    public int getCoordenadaI() {
+        return coordenadaI;
+    }
+
+    public int getCoordenadaJ() {
+        return coordenadaJ;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+}

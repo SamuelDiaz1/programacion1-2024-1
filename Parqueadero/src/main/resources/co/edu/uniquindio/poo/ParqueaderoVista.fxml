@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="515.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.controlador.ControladorParqueadero">
+   <children>
+      <TabPane layoutX="10.0" layoutY="9.0" prefHeight="466.0" prefWidth="559.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Parqueadero">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="211.0" layoutY="79.0" prefHeight="30.0" prefWidth="177.0" />
+                        <Label layoutX="192.0" layoutY="40.0" prefHeight="27.0" prefWidth="214.0" text="Nombre del parqueadero:">
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font></Label>
+                        <Label layoutX="192.0" layoutY="144.0" text="Tarifa por hora del carro:">
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font></Label>
+                        <Label layoutX="184.0" layoutY="239.0" text="Tarifa por hora de la moto:">
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font></Label>
+                        <TextField layoutX="212.0" layoutY="178.0" prefHeight="30.0" prefWidth="176.0" />
+                        <TextField layoutX="211.0" layoutY="275.0" prefHeight="30.0" prefWidth="176.0" />
+                        <Button alignment="CENTER" layoutX="211.0" layoutY="365.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="176.0" text="Crear parqueadero" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Registro">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="495.0" prefWidth="582.0">
+                     <children>
+                        <ImageView fitHeight="332.0" fitWidth="109.0" layoutX="438.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Puestos%20parqueadero.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="332.0" fitWidth="109.0" layoutX="182.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Puestos%20parqueadero.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="331.0" fitWidth="105.0" layoutX="111.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="164.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/entrada%20parqueadero.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="79.0" fitWidth="526.0" layoutX="16.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" rotate="0.5">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/entrada%20parqueadero.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="320.0" fitWidth="109.0" layoutX="13.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Puesto%20girado.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="332.0" fitWidth="109.0" layoutX="288.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Puestos%20parqueadero.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="329.0" fitWidth="78.0" layoutX="367.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="J" />
+                        <Label layoutX="10.0" layoutY="413.0" text="I" />
+                        <Label layoutX="8.0" layoutY="334.0" text="2" />
+                        <Label layoutX="8.0" layoutY="384.0" text="1" />
+                        <Label layoutX="8.0" layoutY="279.0" text="3" />
+                        <Label layoutX="8.0" layoutY="222.0" text="4" />
+                        <Label layoutX="8.0" layoutY="172.0" text="5" />
+                        <Label layoutX="8.0" layoutY="115.0" text="6" />
+                        <Label layoutX="51.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="1" />
+                        <Label layoutX="61.0" layoutY="432.0" prefHeight="17.0" prefWidth="6.0" text="1" />
+                        <Label layoutX="231.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="2" />
+                        <Label layoutX="327.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="3" />
+                        <Label layoutX="487.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="4" />
+                        <ImageView fitHeight="60.0" fitWidth="78.0" layoutX="369.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="99.0" fitWidth="29.0" layoutX="53.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="40.0" layoutY="116.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="40.0" layoutY="168.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="40.0" layoutY="219.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="40.0" layoutY="275.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="40.0" layoutY="330.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="40.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="209.0" layoutY="107.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="209.0" layoutY="163.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="209.0" layoutY="215.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="209.0" layoutY="275.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="209.0" layoutY="330.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="209.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="302.0" layoutY="107.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="302.0" layoutY="163.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="302.0" layoutY="215.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="302.0" layoutY="275.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="302.0" layoutY="330.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="302.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Carro" />
+                        <Button layoutX="465.0" layoutY="107.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="465.0" layoutY="163.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="465.0" layoutY="215.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="465.0" layoutY="275.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="465.0" layoutY="330.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                        <Button layoutX="465.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Registrar Vehiculo">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView disable="true" fitHeight="155.0" fitWidth="157.0" layoutX="190.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Downloads/Imagen%20auto.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </ImageView>
+                        <TextField layoutX="205.0" layoutY="219.0" />
+                        <Label layoutX="157.0" layoutY="223.0" prefHeight="17.0" prefWidth="47.0" text="Placa:" />
+                        <Label layoutX="155.0" layoutY="268.0" prefHeight="17.0" prefWidth="52.0" text="Modelo:" />
+                        <TextField layoutX="205.0" layoutY="264.0" />
+                        <RadioButton layoutX="140.0" layoutY="311.0" mnemonicParsing="false" text="Carro" />
+                        <RadioButton layoutX="224.0" layoutY="311.0" mnemonicParsing="false" text="Moto clasica" />
+                        <RadioButton layoutX="345.0" layoutY="311.0" mnemonicParsing="false" text="Moto hibrida" />
+                        <Button layoutX="212.0" layoutY="352.0" mnemonicParsing="false" text="Registrar vehículo" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Generar reporte">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="208.0" layoutY="130.0" mnemonicParsing="false" text="Generar reporte del mes" />
+                        <Button layoutX="210.0" layoutY="247.0" mnemonicParsing="false" text="Generar reporte del dia" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
