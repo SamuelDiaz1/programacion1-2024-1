@@ -2,7 +2,7 @@ package co.edu.uniquindio.poo.model;
 
 import java.time.LocalDate;
 //import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
+//import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 //import java.util.HashMap;
 import java.util.LinkedList;
@@ -108,20 +108,21 @@ public class Parqueadero {
  * @param vehiculo El vehículo que se va a asignar al puesto.
  * */
     public void asignarVehiculoAPuesto(int coordenadaI, int coordenadaJ, Vehiculo vehiculo) {
-        Puesto puesto = obtenerPuesto(coordenadaI, coordenadaJ);
+        Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
         if (puesto != null) {
             if (!puesto.isOcupado()) {
                 puesto.setVehiculo(vehiculo);
                 vehiculos.add(vehiculo);
                 System.out.println("Vehículo asignado al puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ")");
             } else {
-                System.out.println("El puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ") está ocupado.");
+                System.out.println(("El vehiculo "+vehiculo.getPlaca())+ " no puede ocupar el puesto (" + coordenadaI + ", " + coordenadaJ+ ") porque está ocupado.");
+                System.out.println();
             }
         } else {
         System.out.println("Las coordenadas (" + coordenadaI + ", " + coordenadaJ + ") no existen en el parqueadero.");
     }
 }
-   public Puesto obtenerPuesto ( int coordenadaI, int coordenadaJ){
+   public Puesto getPuesto ( int coordenadaI, int coordenadaJ){
         for (Puesto puesto : listaPuestos) {
             if (puesto.getCoordenadaI() == coordenadaI && puesto.getCoordenadaJ() == coordenadaJ) {
                     return puesto;
@@ -130,16 +131,18 @@ public class Parqueadero {
             return null; // Si no se encuentra el puesto, devolvemos null
         }
         public double calcularValorPorVehiculo(Registro registro) {
-            long horasEstacionado = ChronoUnit.HOURS.between(registro.getFechaIngreso().atTime(registro.getHoraIngreso()), registro.getFechaSalida().atTime(registro.getHoraSalida()));
+            long horasEstacionado = registro.calcularHorasEstacionado();
             double tarifa = 0;
-        
-            if (registro.getVehiculo() instanceof Moto) {
+            Vehiculo vehiculo = registro.getVehiculo();
+            
+            if (vehiculo instanceof Moto) {
                 tarifa = tarifaHoraMoto * horasEstacionado;
-            } else {
+            } 
+            else {
                 tarifa = tarifaHoraCarro * horasEstacionado;
             }
-        
-            return tarifa;
+
+             return tarifa;
         }
 
     
@@ -150,7 +153,7 @@ public class Parqueadero {
         int cantidadVehiculos = 0;
     
         System.out.println("Reporte Diario - Fecha: " + fecha);
-        System.out.println("--------------------------------------------------");
+       // System.out.println("--------------------------------------------------");
         for (Registro registro : registros) {
             if (registro.getFechaIngreso().equals(fecha)) {
                 cantidadVehiculos++;
@@ -163,14 +166,14 @@ public class Parqueadero {
         }
         System.out.println("Total vehículos: " + cantidadVehiculos);
         System.out.println("Total recaudado: $" + totalRecaudado);
-        System.out.println("--------------------------------------------------");
+        //System.out.println("--------------------------------------------------");
     }
     public void generarReporteMensual(int mes, int anio) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
     
         System.out.println("Reporte Mensual - Mes: " + mes + " - Año: " + anio);
-        System.out.println("--------------------------------------------------");
+       // System.out.println("--------------------------------------------------");
         for (Registro registro : registros) {
             if (registro.getFechaIngreso().getMonthValue() == mes && registro.getFechaIngreso().getYear() == anio) {
                 cantidadVehiculos++;

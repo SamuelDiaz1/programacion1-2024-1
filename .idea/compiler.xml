@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="estudiante" />
+        <module name="oficina" />
+        <module name="oficinapublicaciones" />
+        <module name="curso" />
+        <module name="drogueria" />
+        <module name="veterinaria" />
+        <module name="Parqueadero" />
+        <module name="proyecto_oarque" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

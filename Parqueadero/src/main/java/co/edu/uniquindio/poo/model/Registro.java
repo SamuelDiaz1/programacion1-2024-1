@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Registro {
     private final Vehiculo vehiculo;
@@ -34,15 +35,14 @@ public class Registro {
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
-    public void registrarIngresoVehiculo() {
-        this.fechaIngreso = LocalDate.now();
-        this.horaIngreso = LocalTime.now();
-    }
+    
     public void registrarSalidaVehiculo() {
         this.fechaSalida = LocalDate.now();
         this.horaSalida = LocalTime.now();
     }
 
-    
+    public long calcularHorasEstacionado() {
+        return ChronoUnit.HOURS.between(horaIngreso.atDate(fechaIngreso), horaSalida.atDate(fechaSalida));
+    }
 }
 
