@@ -68,6 +68,25 @@ public class Parqueadero {
         return registros;
     }
 
+    ////////////////////////////////////////////////////////////////////////
+
+    public Vehiculo obtenerVehiculo (String placa){
+         for (Vehiculo vehiculo : vehiculos){
+             if( )
+         }
+    }
+
+    public boolean existeVehiculo (String placa){
+        return existeVehiculo(placa);
+    }
+
+    public void registrarVehiculo (Vehiculo vehiculo){
+        if (vehiculo != null ){
+
+        }
+
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < puestos.length; i++) {
