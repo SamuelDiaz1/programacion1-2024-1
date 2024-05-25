@@ -52,46 +52,6 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="495.0" prefWidth="582.0">
                      <children>
-                        <ImageView fitHeight="332.0" fitWidth="109.0" layoutX="438.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Puestos%20parqueadero.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="332.0" fitWidth="109.0" layoutX="182.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Puestos%20parqueadero.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="331.0" fitWidth="105.0" layoutX="111.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="164.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/entrada%20parqueadero.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="79.0" fitWidth="526.0" layoutX="16.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" rotate="0.5">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/entrada%20parqueadero.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="320.0" fitWidth="109.0" layoutX="13.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Puesto%20girado.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="332.0" fitWidth="109.0" layoutX="288.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Puestos%20parqueadero.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="329.0" fitWidth="78.0" layoutX="367.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
-                           </image>
-                        </ImageView>
                         <Label layoutX="13.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="J" />
                         <Label layoutX="10.0" layoutY="413.0" text="I" />
                         <Label layoutX="8.0" layoutY="334.0" text="2" />
@@ -105,16 +65,6 @@
                         <Label layoutX="231.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="2" />
                         <Label layoutX="327.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="3" />
                         <Label layoutX="487.0" layoutY="422.0" prefHeight="17.0" prefWidth="6.0" text="4" />
-                        <ImageView fitHeight="60.0" fitWidth="78.0" layoutX="369.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="99.0" fitWidth="29.0" layoutX="53.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-                           <image>
-                              <Image url="@../../../../../../../../../Downloads/Espacio%20entre%20parqueaderos.JPG" />
-                           </image>
-                        </ImageView>
                         <Button layoutX="40.0" layoutY="116.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
                         <Button layoutX="40.0" layoutY="168.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
                         <Button layoutX="40.0" layoutY="219.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="57.0" text="Moto" />
@@ -148,7 +98,7 @@
                      <children>
                         <ImageView disable="true" fitHeight="155.0" fitWidth="157.0" layoutX="190.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../../Downloads/Imagen%20auto.png /">
+                              <Image url="" />
                            </image>
                            <viewport>
                               <Rectangle2D />

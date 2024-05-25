@@ -23,10 +23,10 @@ public class Main {
         parqueadero.asignarVehiculoAPuesto(4, 3, carro1);
         parqueadero.asignarVehiculoAPuesto(5, 5, carro2);
         System.out.println(parqueadero);        
-         LocalDate fechaIngreso = LocalDate.of(2024, 5, 23); // Fecha de ingreso
-        LocalTime horaIngreso = LocalTime.of(0, 0); // Hora de ingreso (1:00 AM)
+         LocalDate fechaIngreso = LocalDate.of(2024, 5, 24); // Fecha de ingreso
+        LocalTime horaIngreso = LocalTime.of(18, 0); // Hora de ingreso (1:00 AM)
         Registro registro1 = new Registro(carro1,horaIngreso,fechaIngreso);
-        registro1.registrarSalidaVehiculo();
+        
 
     parqueadero.getRegistros().add(registro1);
     parqueadero.generarReporteDiario(LocalDate.now());

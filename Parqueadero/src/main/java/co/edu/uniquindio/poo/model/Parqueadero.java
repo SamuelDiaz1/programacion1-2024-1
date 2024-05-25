@@ -145,7 +145,13 @@ public class Parqueadero {
              return tarifa;
         }
 
-    
+    /**
+     * @param fecha la fecha de la cual se busca generar el reporte 
+     * De acuerdo a una fecha dada imprime el reporte con registro de entrada y salida
+     * valor a pagar de un auto
+     * cantidadd de vehiculos ingresados en el dia
+     * y el total de dinero recogido durante el dia 
+     **/
 
     
     public void generarReporteDiario(LocalDate fecha) {
@@ -168,6 +174,15 @@ public class Parqueadero {
         System.out.println("Total recaudado: $" + totalRecaudado);
         //System.out.println("--------------------------------------------------");
     }
+    /**
+     * @param  mes mes que del que se desea generar el reporte
+     * @param anio año del cual se busca generar el reporte del mes
+     * Al ingresar el dia y año se recorren la fecha de los registros, las fechas que tengan el año y mes ingresados
+     * como parametros 
+     * 
+     * 
+     * 
+     **/
     public void generarReporteMensual(int mes, int anio) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
@@ -188,6 +203,6 @@ public class Parqueadero {
         }
         System.out.println("Total vehículos: " + cantidadVehiculos);
         System.out.println("Total recaudado: $" + totalRecaudado);
-        System.out.println("--------------------------------------------------");
+        //System.out.println("--------------------------------------------------");
     }
 }

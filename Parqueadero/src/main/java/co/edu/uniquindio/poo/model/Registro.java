@@ -14,6 +14,8 @@ public class Registro {
         this.vehiculo=vehiculo;
         this.horaIngreso = horaIngreso;
         this.fechaIngreso=fechaIngreso;
+        this.fechaSalida = LocalDate.now();
+        this.horaSalida = LocalTime.now();
         assert horaIngreso!=null: "La hora de ingreso debe ser diferente a null";
 
     }
@@ -36,10 +38,7 @@ public class Registro {
         return fechaIngreso;
     }
     
-    public void registrarSalidaVehiculo() {
-        this.fechaSalida = LocalDate.now();
-        this.horaSalida = LocalTime.now();
-    }
+    
 
     public long calcularHorasEstacionado() {
         return ChronoUnit.HOURS.between(horaIngreso.atDate(fechaIngreso), horaSalida.atDate(fechaSalida));
