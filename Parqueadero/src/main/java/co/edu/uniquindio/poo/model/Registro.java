@@ -37,8 +37,11 @@ public class Registro {
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
-    
-    
+
+    public void registrarSalidaVehiculo(){
+        this.fechaSalida=LocalDate.now();
+        this.horaSalida=LocalTime.now();
+    }
 
     public long calcularHorasEstacionado() {
         return ChronoUnit.HOURS.between(horaIngreso.atDate(fechaIngreso), horaSalida.atDate(fechaSalida));

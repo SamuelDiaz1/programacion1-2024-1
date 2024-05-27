@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.main;
 
 import co.edu.uniquindio.poo.model.*;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -11,27 +12,42 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Parqueadero parqueadero = new Parqueadero("Mi Parqueadero", 2000, 1000, 6, 6);
-    
-        Vehiculo moto1 = new Moto("ABC123", "Marca1", "Modelo1", 150, TipoMoto.HIBRIDA);
-        Vehiculo moto2 = new Moto("XYZ789", "Marca2", "Modelo2", 120, TipoMoto.CLASICA);
-        Vehiculo moto3 = new Moto("ABC123", "Marca1", "Modelo1", 150, TipoMoto.HIBRIDA);
-    
-        Vehiculo carro1 = new Carro("Toyota", "2015", "XGB123");
-        Vehiculo carro2 = new Carro("Mazda","2009","MRS189");
-        parqueadero.asignarVehiculoAPuesto(2, 2, moto3);
-        parqueadero.asignarVehiculoAPuesto(0, 0, moto1);
-        parqueadero.asignarVehiculoAPuesto(2, 2, moto2);
-        parqueadero.asignarVehiculoAPuesto(4, 3, carro1);
-        parqueadero.asignarVehiculoAPuesto(5, 5, carro2);
-        System.out.println(parqueadero);        
-         LocalDate fechaIngreso = LocalDate.of(2024, 5, 24); // Fecha de ingreso
-        LocalTime horaIngreso = LocalTime.of(18, 0); // Hora de ingreso (1:00 AM)
-        Registro registro1 = new Registro(carro1,horaIngreso,fechaIngreso);
-        
+        Parqueadero parqueadero = new Parqueadero("Parqueadero Central", 1000, 500, 6, 6);
+        Propietario propietario =new Propietario("Rodolfo","12345678");
+        String marca = JOptionPane.showInputDialog(null, "Ingrese la marca del vehiculo: ");
+        Vehiculo carro1 = new Carro(propietario, ma,"ABC123", "Toyota");
+        Vehiculo moto1 = new Moto(propietario,"XYZ789", "Yamaha", "XYR123", 125, TipoMoto.CLASICA);
+        LocalTime horaIngreso= 
+        Registro registro1=new Registro(moto1,1,);
+        parqueadero.asignarVehiculoAPuesto(1, 1, moto1);
+        parqueadero.asignarVehiculoAPuesto(2, 2, moto1);
 
-    parqueadero.getRegistros().add(registro1);
-    parqueadero.generarReporteDiario(LocalDate.now());
+        System.out.println(parqueadero);
+
+        Propietario propietarioCarro1 = parqueadero.retornarPropietario(1, 1);
+        Propietario propietarioMoto1 = parqueadero.retornarPropietario(2, 2);
+        Propietario propietarioPuestoVacio = parqueadero.retornarPropietario(3, 3);
+
+        System.out.println("Propietario del vehículo en el puesto (1, 1): " + propietarioCarro1.toString());
+        System.out.println("Propietario del vehículo en el puesto (2, 2): " + propietarioMoto1.toString());
+        System.out.println("Propietario del vehículo en el puesto (3, 3): " + propietarioPuestoVacio);
+
+        parqueadero.liberarPuesto(1, 1);
+        parqueadero.liberarPuesto(2, 2);
+
+        String reporteDiario = parqueadero.generarReporteDiario();
+        System.out.println(reporteDiario);
+
+        String reporteMensual = parqueadero.generarReporteMensual();
+        System.out.println(reporteMensual);
+
+        /**
+        String reporteDiario = parqueadero.generarReporteDiario();
+        System.out.println(reporteDiario);
+
+        String reporteMensual = parqueadero.generarReporteMensual();
+        System.out.println(reporteMensual);
+         **/
     
         // Mostrar un reporte de los vehículos asignados
     

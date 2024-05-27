@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.model;
 
+import javax.swing.*;
 import java.time.LocalDate;
 //import java.time.LocalTime;
 //import java.time.temporal.ChronoUnit;
@@ -14,6 +15,7 @@ public class Parqueadero {
     private final int tarifaHoraCarro;
     private final int tarifaHoraMoto;
     private final Collection<Vehiculo> vehiculos;
+    private final Collection <Vehiculo>vehiculosAux;
     private final Collection<Registro> registros;
     private final Puesto[][] puestos;
     private final int filas;
@@ -27,6 +29,7 @@ public class Parqueadero {
         this.tarifaHoraCarro = tarifaHoraCarro;
         this.tarifaHoraMoto = tarifaHoraMoto;
         this.vehiculos = new LinkedList<>();
+        this.vehiculosAux = new LinkedList<>();
         this.registros = new LinkedList<>();
         this.puestos = new Puesto[filas][columnas];
         this.filas= filas;
@@ -43,6 +46,7 @@ public class Parqueadero {
         return puestos;
     }
 
+    public Collection<Vehiculo> getVehiculosAux() {return vehiculosAux;}
 
     public String getNombre() {
         return nombre;
@@ -72,19 +76,44 @@ public class Parqueadero {
 
     public Vehiculo obtenerVehiculo (String placa){
          for (Vehiculo vehiculo : vehiculos){
-             if( )
+             if( vehiculo.getPlaca().equals(placa)){
+                 return vehiculo; 
+             }
          }
+        System.out.println("El vehiculo no se encontro" + placa);
+         return null; 
     }
 
     public boolean existeVehiculo (String placa){
-        return existeVehiculo(placa);
+        return obtenerVehiculo(placa) != null;
     }
 
     public void registrarVehiculo (Vehiculo vehiculo){
-        if (vehiculo != null ){
+        if (vehiculo != null && !existeVehiculo(vehiculo.getPlaca())){
+            vehiculos.add(vehiculo);
+            vehiculosAux.add(vehiculo);
+            System.out.println("Vehiculo agregado: "+ vehiculo.getPlaca());
 
         }
+        else{
+            System.out.println("No fue posilbe agregar el vehiculo");
+        }
 
+    }
+    public void agregarVehiculoAlRegistro(Registro registro){
+
+    }
+    
+    public void eliminarVehiculo (String placa){
+        Vehiculo vehiculo = obtenerVehiculo(placa);
+        if (vehiculo!= null ){
+            vehiculos.remove(vehiculo);
+            System.out.println("Vehiculo eliminado: "+ placa);
+        }
+        else {
+            System.out.println("No fue posible elminar el vehiculo: " +placa);
+        }
+        
     }
 
     public String toString() {
@@ -104,14 +133,14 @@ public class Parqueadero {
     }
 
 
-        /**
-         * Inicializa todos los puestos del parqueadero.
-         * Crea un objeto Puesto para cada posición en la matriz de puestos.
-         * Cada puesto se inicializa con las coordenadas correspondientes.
-         */
-        private void inicializarPuestos() {
-            for (int i = 1; i <= filas; i++) {
-                for (int j = 1; j <= columnas; j++) {
+    /**
+     * Inicializa todos los puestos del parqueadero.
+     * Crea un objeto Puesto para cada posición en la matriz de puestos.
+     * Cada puesto se inicializa con las coordenadas correspondientes.
+     */
+    private void inicializarPuestos() {
+        for (int i = 1; i <= filas; i++) {
+            for (int j = 1; j <= columnas; j++) {
                     Puesto puesto = new Puesto(i, j);
                     listaPuestos.add(puesto);
                     puestos[i - 1][j - 1] = puesto;
@@ -131,7 +160,7 @@ public class Parqueadero {
         if (puesto != null) {
             if (!puesto.isOcupado()) {
                 puesto.setVehiculo(vehiculo);
-                vehiculos.add(vehiculo);
+                registrarVehiculo(vehiculo);
                 System.out.println("Vehículo asignado al puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ")");
             } else {
                 System.out.println(("El vehiculo "+vehiculo.getPlaca())+ " no puede ocupar el puesto (" + coordenadaI + ", " + coordenadaJ+ ") porque está ocupado.");
@@ -140,7 +169,25 @@ public class Parqueadero {
         } else {
         System.out.println("Las coordenadas (" + coordenadaI + ", " + coordenadaJ + ") no existen en el parqueadero.");
     }
-}
+    }
+    public Propietario retornarPropietario(int i,int j){
+        Puesto puesto = getPuesto(i,j);
+        if (puesto != null && puesto.isOcupado()) {
+            Vehiculo vehiculo = puesto.getVehiculo();
+            return vehiculo.getPropietario();
+        }
+        return null;
+
+    }
+    public void liberarPuesto(int coordenadaI, int coordenadaJ) {
+        Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
+        if (puesto != null && puesto.isOcupado()) {
+            puesto.liberarPuesto();
+            System.out.println("Puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ") ha sido liberado.");
+        } else {
+            System.out.println("El puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ") no está ocupado o no existe.");
+        }
+    }
    public Puesto getPuesto ( int coordenadaI, int coordenadaJ){
         for (Puesto puesto : listaPuestos) {
             if (puesto.getCoordenadaI() == coordenadaI && puesto.getCoordenadaJ() == coordenadaJ) {
@@ -153,14 +200,12 @@ public class Parqueadero {
             long horasEstacionado = registro.calcularHorasEstacionado();
             double tarifa = 0;
             Vehiculo vehiculo = registro.getVehiculo();
-            
             if (vehiculo instanceof Moto) {
                 tarifa = tarifaHoraMoto * horasEstacionado;
             } 
             else {
                 tarifa = tarifaHoraCarro * horasEstacionado;
             }
-
              return tarifa;
         }
 
@@ -172,8 +217,7 @@ public class Parqueadero {
      * y el total de dinero recogido durante el dia 
      **/
 
-    
-    public void generarReporteDiario(LocalDate fecha) {
+   public void generarReporteDiario(LocalDate fecha) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
     
@@ -192,7 +236,7 @@ public class Parqueadero {
         System.out.println("Total vehículos: " + cantidadVehiculos);
         System.out.println("Total recaudado: $" + totalRecaudado);
         //System.out.println("--------------------------------------------------");
-    }
+   }
     /**
      * @param  mes mes que del que se desea generar el reporte
      * @param anio año del cual se busca generar el reporte del mes
@@ -202,7 +246,7 @@ public class Parqueadero {
      * 
      * 
      **/
-    public void generarReporteMensual(int mes, int anio) {
+   public void generarReporteMensual(int mes, int anio) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
     
@@ -223,5 +267,5 @@ public class Parqueadero {
         System.out.println("Total vehículos: " + cantidadVehiculos);
         System.out.println("Total recaudado: $" + totalRecaudado);
         //System.out.println("--------------------------------------------------");
-    }
+   }
 }

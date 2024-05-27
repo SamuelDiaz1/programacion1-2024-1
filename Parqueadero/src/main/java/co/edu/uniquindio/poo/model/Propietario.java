@@ -12,10 +12,19 @@ public class Propietario {
         assert cedula !=null && cedula.isBlank():"El numero de cedula debe ser diferente de null";
 
     }
+
     public String getNombre() {
         return nombre;
     }
     public String getCedula() {
         return cedula;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "nombre='" + nombre + '\'' +
+                ", cedula='" + cedula + '\'' +
+                '}';
     }
 }
