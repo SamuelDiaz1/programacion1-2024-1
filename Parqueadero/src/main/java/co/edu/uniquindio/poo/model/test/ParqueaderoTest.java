@@ -13,15 +13,9 @@ import co.edu.uniquindio.poo.model.*;
 import org.testng.annotations.Test;
 import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Collection;
+
 import java.util.List;
-import java.util.logging.Logger;
-import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 
 class ParqueaderoTest {

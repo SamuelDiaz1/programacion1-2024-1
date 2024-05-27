@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo.model;
+package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
