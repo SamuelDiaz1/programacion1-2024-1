@@ -32,9 +32,13 @@ public class Puesto {
 
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
+        this.ocupado=false;
     }
     public void liberarPuesto() {
         this.vehiculo = null;
         this.ocupado = false;
+    }
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
     }
 }

@@ -1,10 +1,10 @@
 package co.edu.uniquindio.poo.model;
 
-import javax.swing.*;
+
 import java.time.LocalDate;
 //import java.time.LocalTime;
 //import java.time.temporal.ChronoUnit;
-import java.time.LocalTime;
+
 import java.util.Collection;
 //import java.util.HashMap;
 import java.util.LinkedList;
@@ -73,8 +73,12 @@ public class Parqueadero {
         return registros;
     }
 
-    ////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Obtiene un vehículo en el parqueadero dado su número de placa.
+     * @param placa La placa del vehículo a buscar.
+     * @return El vehículo encontrado o null si no se encuentra.
+     */
     public Vehiculo obtenerVehiculo (String placa){
          for (Vehiculo vehiculo : vehiculos){
              if( vehiculo.getPlaca().equals(placa)){
@@ -84,11 +88,18 @@ public class Parqueadero {
         System.out.println("El vehiculo no se encontro" + placa);
          return null; 
     }
-
+    /**
+     * Verifica si un vehículo con una placa específica existe en el parqueadero.
+     * @param placa La placa del vehículo a buscar.
+     * @return true si el vehículo existe, false en caso contrario.
+     */
     public boolean existeVehiculo (String placa){
         return obtenerVehiculo(placa) != null;
     }
-
+    /**
+     * Registra un vehículo en el parqueadero.
+     * @param vehiculo El vehículo a registrar.
+     */
     public void registrarVehiculo (Vehiculo vehiculo){
         if (vehiculo != null && !existeVehiculo(vehiculo.getPlaca())){
             vehiculos.add(vehiculo);
@@ -101,11 +112,20 @@ public class Parqueadero {
         }
 
     }
+    /**
+     * Verifica si un puesto específico en el parqueadero está disponible.
+     * @param coordenadaI La coordenada 'i' (fila) del puesto en el parqueadero.
+     * @param coordenadaJ La coordenada 'j' (columna) del puesto en el parqueadero.
+     * @return true si el puesto está disponible, false en caso contrario.
+     */
     public boolean isPuestoDisponible(int coordenadaI, int coordenadaJ) {
         Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
         return puesto != null && !puesto.isOcupado();
     }
-
+    /**
+     * Registra la salida de un vehículo del parqueadero.
+     * @param vehiculo El vehículo que va a salir del parqueadero.
+     */
     public void registrarSalidaVehiculo(Vehiculo vehiculo) {
         for (Registro registro : registros) {
             if (registro.getVehiculo().equals(vehiculo) && registro.getFechaSalida() == null) {
@@ -117,7 +137,10 @@ public class Parqueadero {
             }
         }
     }
-    
+    /**
+     * Elimina un vehículo del parqueadero dado su número de placa.
+     * @param placa La placa del vehículo a eliminar.
+     */
     public void eliminarVehiculo (String placa){
         Vehiculo vehiculo = obtenerVehiculo(placa);
         if (vehiculo!= null ){
@@ -129,7 +152,11 @@ public class Parqueadero {
         }
         
     }
-
+    /**
+     * Representa el estado actual del parqueadero en forma de cadena.
+     * Muestra si cada puesto está ocupado o desocupado.
+     * @return Una cadena que representa el estado del parqueadero.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < puestos.length; i++) {
@@ -162,13 +189,13 @@ public class Parqueadero {
             }
         }
     /**
-    * Asigna un vehículo a un puesto específico en el parqueadero.
-    * Verifica si el puesto está disponible y dentro de los límites del parqueadero.
-    * Si el puesto está disponible, asigna el vehículo al puesto y lo marca como ocupado.
-    * @param coordenadaI La coordenada 'i' (fila) del puesto en el parqueadero.
-    * @param coordenadaJ La coordenada 'j' (columna) del puesto en el parqueadero.
-    * @param vehiculo El vehículo que se va a asignar al puesto.
-    * */
+     * Asigna un vehículo a un puesto específico en el parqueadero.
+     * Verifica si el puesto está disponible y dentro de los límites del parqueadero.
+     * Si el puesto está disponible, asigna el vehículo al puesto y lo marca como ocupado.
+     * @param coordenadaI La coordenada 'i' (fila) del puesto en el parqueadero.
+     * @param coordenadaJ La coordenada 'j' (columna) del puesto en el parqueadero.
+     * @param registro El registro del vehículo que se va a asignar al puesto.
+     */
     public void asignarVehiculoAPuesto(int coordenadaI, int coordenadaJ, Registro registro) {
         if (vehiculosAux.contains(registro.getVehiculo())) {
             System.out.println("Error: El vehículo ya está asignado a otro puesto.");
@@ -186,6 +213,12 @@ public class Parqueadero {
             System.out.println("El puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ") no está disponible.");
         }
     }
+    /**
+     * Retorna el propietario del vehículo en un puesto específico del parqueadero.
+     * @param i La coordenada 'i' (fila) del puesto en el parqueadero.
+     * @param j La coordenada 'j' (columna) del puesto en el parqueadero.
+     * @return El propietario del vehículo en el puesto, o null si el puesto está vacío.
+     */
     public Propietario retornarPropietario(int i,int j){
         Puesto puesto = getPuesto(i,j);
         if (puesto != null && puesto.isOcupado()) {
@@ -195,6 +228,11 @@ public class Parqueadero {
         return null;
 
     }
+    /**
+     * Libera un puesto específico en el parqueadero, permitiendo que un nuevo vehículo pueda ocuparlo.
+     * @param coordenadaI La coordenada 'i' (fila) del puesto en el parqueadero.
+     * @param coordenadaJ La coordenada 'j' (columna) del puesto en el parqueadero.
+     */
     public void liberarPuesto(int coordenadaI, int coordenadaJ) {
         Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
         if (puesto != null && puesto.isOcupado()) {

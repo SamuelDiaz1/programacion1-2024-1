@@ -2,7 +2,7 @@ package co.edu.uniquindio.poo.main;
 
 import co.edu.uniquindio.poo.model.*;
 
-import javax.swing.*;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -19,8 +19,9 @@ public class Main {
         LocalTime horaIngreso= LocalTime.of(23,9);
         LocalDate fechaIngreso=LocalDate.of(2024,5,26);
         Registro registro1=new Registro(moto1,horaIngreso,fechaIngreso);
+        Registro registro2=new Registro(carro1,horaIngreso,fechaIngreso);
         parqueadero.calcularValorPorVehiculo(registro1);
-
+        parqueadero.asignarVehiculoAPuesto(3,3, registro2);
         parqueadero.asignarVehiculoAPuesto(1, 1, registro1);
         parqueadero.asignarVehiculoAPuesto(2, 2, registro1);
         parqueadero.liberarPuesto(2,2);

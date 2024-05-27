@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Registro {
@@ -38,8 +39,10 @@ public class Registro {
         return fechaIngreso;
     }
     public void registrarSalidaVehiculo() {
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("HH:mm");
         this.fechaSalida = LocalDate.now();
         this.horaSalida = LocalTime.now();
+
     }
     public long calcularHorasEstacionado() {
         return ChronoUnit.HOURS.between(horaIngreso.atDate(fechaIngreso), horaSalida.atDate(fechaSalida));
