@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 //import java.time.LocalTime;
 //import java.time.temporal.ChronoUnit;
+import java.time.LocalTime;
 import java.util.Collection;
 //import java.util.HashMap;
 import java.util.LinkedList;
@@ -100,8 +101,21 @@ public class Parqueadero {
         }
 
     }
-    public void agregarVehiculoAlRegistro(Registro registro){
+    public boolean isPuestoDisponible(int coordenadaI, int coordenadaJ) {
+        Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
+        return puesto != null && !puesto.isOcupado();
+    }
 
+    public void registrarSalidaVehiculo(Vehiculo vehiculo) {
+        for (Registro registro : registros) {
+            if (registro.getVehiculo().equals(vehiculo) && registro.getFechaSalida() == null) {
+                registro.registrarSalidaVehiculo();
+                double valorPagar = calcularValorPorVehiculo(registro);
+                vehiculosAux.remove(vehiculo);
+                System.out.println("Valor a pagar: $" + valorPagar);
+                break;
+            }
+        }
     }
     
     public void eliminarVehiculo (String placa){
@@ -156,19 +170,20 @@ public class Parqueadero {
  * @param vehiculo El vehículo que se va a asignar al puesto.
  * */
     public void asignarVehiculoAPuesto(int coordenadaI, int coordenadaJ, Vehiculo vehiculo) {
-        Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
-        if (puesto != null) {
-            if (!puesto.isOcupado()) {
-                puesto.setVehiculo(vehiculo);
-                registrarVehiculo(vehiculo);
-                System.out.println("Vehículo asignado al puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ")");
-            } else {
-                System.out.println(("El vehiculo "+vehiculo.getPlaca())+ " no puede ocupar el puesto (" + coordenadaI + ", " + coordenadaJ+ ") porque está ocupado.");
-                System.out.println();
-            }
+        if (vehiculosAux.contains(vehiculo)) {
+            System.out.println("Error: El vehículo ya está asignado a otro puesto.");
+        }
+        if (isPuestoDisponible(coordenadaI, coordenadaJ)) {
+            Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
+            puesto.setVehiculo(vehiculo);
+            vehiculos.add(vehiculo);
+            vehiculosAux.add(vehiculo);
+            Registro registro = new Registro(vehiculo, LocalTime.now(), LocalDate.now());
+            registros.add(registro);
+            System.out.println("Vehículo asignado al puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ")");
         } else {
-        System.out.println("Las coordenadas (" + coordenadaI + ", " + coordenadaJ + ") no existen en el parqueadero.");
-    }
+            System.out.println("El puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ") no está disponible.");
+        }
     }
     public Propietario retornarPropietario(int i,int j){
         Puesto puesto = getPuesto(i,j);
@@ -182,6 +197,15 @@ public class Parqueadero {
     public void liberarPuesto(int coordenadaI, int coordenadaJ) {
         Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
         if (puesto != null && puesto.isOcupado()) {
+            Vehiculo vehiculo = puesto.getVehiculo();
+            for (Registro registro : registros) {
+                if (registro.getVehiculo().equals(vehiculo) && registro.getFechaSalida() == null) {
+
+                    double valorPagar = calcularValorPorVehiculo(registro);
+                    System.out.println("Valor a pagar por el vehículo en el puesto (" + coordenadaI + ", " + coordenadaJ + "): $" + valorPagar);
+                    break;
+                }
+            }
             puesto.liberarPuesto();
             System.out.println("Puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ") ha sido liberado.");
         } else {
@@ -196,18 +220,19 @@ public class Parqueadero {
             }
             return null; // Si no se encuentra el puesto, devolvemos null
         }
-        public double calcularValorPorVehiculo(Registro registro) {
-            long horasEstacionado = registro.calcularHorasEstacionado();
-            double tarifa = 0;
-            Vehiculo vehiculo = registro.getVehiculo();
-            if (vehiculo instanceof Moto) {
-                tarifa = tarifaHoraMoto * horasEstacionado;
-            } 
-            else {
-                tarifa = tarifaHoraCarro * horasEstacionado;
-            }
-             return tarifa;
+
+    public double calcularValorPorVehiculo(Registro registro) {
+        long horasEstacionado = registro.calcularHorasEstacionado();
+        double tarifa = 0;
+        Vehiculo vehiculo = registro.getVehiculo();
+
+        if (vehiculo instanceof Moto) {
+            tarifa += tarifaHoraMoto * horasEstacionado;
+        } else {
+            tarifa += tarifaHoraCarro * horasEstacionado;
         }
+        return tarifa;
+    }
 
     /**
      * @param fecha la fecha de la cual se busca generar el reporte 
@@ -217,12 +242,12 @@ public class Parqueadero {
      * y el total de dinero recogido durante el dia 
      **/
 
-   public void generarReporteDiario(LocalDate fecha) {
+    public void generarReporteDiario(LocalDate fecha) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
-    
+
         System.out.println("Reporte Diario - Fecha: " + fecha);
-       // System.out.println("--------------------------------------------------");
+        System.out.println("--------------------------------------------------");
         for (Registro registro : registros) {
             if (registro.getFechaIngreso().equals(fecha)) {
                 cantidadVehiculos++;
@@ -235,8 +260,8 @@ public class Parqueadero {
         }
         System.out.println("Total vehículos: " + cantidadVehiculos);
         System.out.println("Total recaudado: $" + totalRecaudado);
-        //System.out.println("--------------------------------------------------");
-   }
+        System.out.println("--------------------------------------------------");
+    }
     /**
      * @param  mes mes que del que se desea generar el reporte
      * @param anio año del cual se busca generar el reporte del mes
@@ -246,12 +271,12 @@ public class Parqueadero {
      * 
      * 
      **/
-   public void generarReporteMensual(int mes, int anio) {
+    public void generarReporteMensual(int mes, int anio) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
-    
+
         System.out.println("Reporte Mensual - Mes: " + mes + " - Año: " + anio);
-       // System.out.println("--------------------------------------------------");
+        System.out.println("--------------------------------------------------");
         for (Registro registro : registros) {
             if (registro.getFechaIngreso().getMonthValue() == mes && registro.getFechaIngreso().getYear() == anio) {
                 cantidadVehiculos++;
@@ -266,6 +291,6 @@ public class Parqueadero {
         }
         System.out.println("Total vehículos: " + cantidadVehiculos);
         System.out.println("Total recaudado: $" + totalRecaudado);
-        //System.out.println("--------------------------------------------------");
-   }
+        System.out.println("--------------------------------------------------");
+    }
 }

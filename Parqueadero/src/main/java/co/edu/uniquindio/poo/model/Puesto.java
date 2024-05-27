@@ -28,7 +28,7 @@ public class Puesto {
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-    public void setOcupado(boolean ocupado) {this.ocupado = ocupado;}
+
 
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
