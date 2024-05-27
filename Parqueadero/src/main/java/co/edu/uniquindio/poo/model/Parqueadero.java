@@ -161,24 +161,25 @@ public class Parqueadero {
                 }
             }
         }
-/**
- * Asigna un vehículo a un puesto específico en el parqueadero.
- * Verifica si el puesto está disponible y dentro de los límites del parqueadero.
- * Si el puesto está disponible, asigna el vehículo al puesto y lo marca como ocupado.
- * @param coordenadaI La coordenada 'i' (fila) del puesto en el parqueadero.
- * @param coordenadaJ La coordenada 'j' (columna) del puesto en el parqueadero.
- * @param vehiculo El vehículo que se va a asignar al puesto.
- * */
-    public void asignarVehiculoAPuesto(int coordenadaI, int coordenadaJ, Vehiculo vehiculo) {
-        if (vehiculosAux.contains(vehiculo)) {
+    /**
+    * Asigna un vehículo a un puesto específico en el parqueadero.
+    * Verifica si el puesto está disponible y dentro de los límites del parqueadero.
+    * Si el puesto está disponible, asigna el vehículo al puesto y lo marca como ocupado.
+    * @param coordenadaI La coordenada 'i' (fila) del puesto en el parqueadero.
+    * @param coordenadaJ La coordenada 'j' (columna) del puesto en el parqueadero.
+    * @param vehiculo El vehículo que se va a asignar al puesto.
+    * */
+    public void asignarVehiculoAPuesto(int coordenadaI, int coordenadaJ, Registro registro) {
+        if (vehiculosAux.contains(registro.getVehiculo())) {
             System.out.println("Error: El vehículo ya está asignado a otro puesto.");
+
         }
         if (isPuestoDisponible(coordenadaI, coordenadaJ)) {
             Puesto puesto = getPuesto(coordenadaI, coordenadaJ);
-            puesto.setVehiculo(vehiculo);
-            vehiculos.add(vehiculo);
-            vehiculosAux.add(vehiculo);
-            Registro registro = new Registro(vehiculo, LocalTime.now(), LocalDate.now());
+            puesto.setVehiculo(registro.getVehiculo());
+            vehiculos.add(registro.getVehiculo());
+            vehiculosAux.add(registro.getVehiculo());
+
             registros.add(registro);
             System.out.println("Vehículo asignado al puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ")");
         } else {
@@ -221,7 +222,7 @@ public class Parqueadero {
             return null; // Si no se encuentra el puesto, devolvemos null
         }
 
-    public double calcularValorPorVehiculo(Registro registro) {
+   public double calcularValorPorVehiculo(Registro registro) {
         long horasEstacionado = registro.calcularHorasEstacionado();
         double tarifa = 0;
         Vehiculo vehiculo = registro.getVehiculo();
@@ -242,7 +243,7 @@ public class Parqueadero {
      * y el total de dinero recogido durante el dia 
      **/
 
-    public void generarReporteDiario(LocalDate fecha) {
+   public void generarReporteDiario(LocalDate fecha) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
 
@@ -271,7 +272,7 @@ public class Parqueadero {
      * 
      * 
      **/
-    public void generarReporteMensual(int mes, int anio) {
+   public void generarReporteMensual(int mes, int anio) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
 
