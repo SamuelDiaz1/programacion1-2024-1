@@ -112,8 +112,8 @@ public class Main {
                 parqueadero.liberarPuesto(i4,j4);
                 JOptionPane.showMessageDialog(null,("El puesto "+j4+" "+i4+"fue liberado"));
             case 4:
-                int i5 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la fila del puesto:"));
-                int j5 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la columna del puesto:"));
+                int i5 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la coordenada i del puesto:"));
+                int j5 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la coordenada i del puesto:"));
 
                 boolean disponible = parqueadero.isPuestoDisponible(i5, j5);
                 JOptionPane.showMessageDialog(null, "El puesto en (" + i5 + ", " + j5 + ") está " +
@@ -126,7 +126,9 @@ public class Main {
 
                 break;
             case 6:
-
+                int mes = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el mes del reporte (1-12):"));
+                int anio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año del reporte (YYYY):"));
+                parqueadero.generarReporteMensual(mes, anio);
                 break;
             case 7:
                 JOptionPane.showMessageDialog(null, parqueadero.toString());
