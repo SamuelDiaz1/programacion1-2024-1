@@ -28,8 +28,9 @@ public class Puesto {
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-
-
+    public boolean getOupado(){
+        return ocupado;
+    }
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
         this.ocupado=false;
