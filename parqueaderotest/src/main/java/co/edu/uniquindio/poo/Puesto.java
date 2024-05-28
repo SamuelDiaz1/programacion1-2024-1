@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo.model;
 
 public class Puesto {
     private final int coordenadaI;
@@ -28,7 +28,7 @@ public class Puesto {
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
-    public boolean getOcupado(){
+    public boolean getOupado(){
         return ocupado;
     }
     public void setVehiculo(Vehiculo vehiculo) {

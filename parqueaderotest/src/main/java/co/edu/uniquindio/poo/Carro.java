@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo.model;
 
 public class Carro extends Vehiculo {
     public Carro(Propietario propietario,String marca, String modelo, String placa) {
