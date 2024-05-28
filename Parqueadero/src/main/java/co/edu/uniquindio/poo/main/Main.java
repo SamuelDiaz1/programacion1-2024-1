@@ -20,9 +20,9 @@ public class Main {
                 "Registrar moto hibrida",
                 "Registrar carro",
                 "Registrar Salida de Vehículo",
-                "Eliminar Vehículo",
                 "Verificar Disponibilidad de Puesto",
-                "",
+                "Generar reporte diario",
+                "Generar reporte mensual",
                 "Mostrar Estado del Parqueadero",
                 "Salir"
         };
@@ -62,8 +62,9 @@ public class Main {
                     Registro registroMotoClasica=new Registro(motoClasica,horaIngresoMotoClasica,fechaIngresoMotoClasica);
                     parqueadero.asignarVehiculoAPuesto(i1,j1,registroMotoClasica);
                     parqueadero.registrarVehiculo(motoClasica);
+                    JOptionPane.showMessageDialog(null,"Moto clasica registrada");
 
-            break;
+                    break;
             case 1:
                 String marcaMotoHibrida = JOptionPane.showInputDialog("Ingrese la marca de la moto:");
                 String placaMotoHibrida = JOptionPane.showInputDialog("Ingrese la placa del vehículo:");
@@ -74,11 +75,13 @@ public class Main {
                 Propietario propietarioMotoHibrida = new Propietario(nombrePropietarioMotoHibrida, cedulaPropietarioMotoHibrida);
                 int i2=Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la coordenada I:"));
                 int j2=Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la coordenada J:"));
+                LocalDate fechaIngresoMotoH= LocalDate.parse(JOptionPane.showInputDialog(null, "Ingrese una fecha (yyyy-MM-dd):"));
+                LocalTime horaIngresoMotoH= LocalTime.parse(JOptionPane.showInputDialog(null,"Ingrese la hora (HH:mm):"));
 
                 Vehiculo motoH = new Moto(propietarioMotoHibrida, marcaMotoHibrida,modeloMotoHibrida, placaMotoHibrida, velocidadMaximaMotoHibrida,TipoMoto.HIBRIDA);
 
                 parqueadero.registrarVehiculo(motoH);
-                Registro registroMotoH=new Registro(motoH,LocalTime.now(),LocalDate.now());
+                Registro registroMotoH=new Registro(motoH,horaIngresoMotoH,fechaIngresoMotoH);
                 parqueadero.asignarVehiculoAPuesto(i2,j2,registroMotoH);
                 parqueadero.registrarVehiculo(motoH);
                 JOptionPane.showMessageDialog(null,"Moto hibrida registrada");
@@ -104,11 +107,22 @@ public class Main {
 
                 break;
             case 3:
-
+                int i4=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese la cordenada i"));
+                int j4=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese la cordenada j"));
+                parqueadero.liberarPuesto(i4,j4);
+                JOptionPane.showMessageDialog(null,("El puesto "+j4+" "+i4+"fue liberado"));
             case 4:
+                int i5 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la fila del puesto:"));
+                int j5 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la columna del puesto:"));
 
+                boolean disponible = parqueadero.isPuestoDisponible(i5, j5);
+                JOptionPane.showMessageDialog(null, "El puesto en (" + i5 + ", " + j5 + ") está " +
+                        (disponible ? "disponible." : "ocupado."));
                 break;
             case 5:
+                LocalDate fechaReporte=LocalDate.parse(JOptionPane.showInputDialog(null,"Ingrese la fecha de la cual quiere generar el reporte (YYYY-MM-rrDD):"));
+                parqueadero.generarReporteDiario(fechaReporte);
+                //JOptionPane.showMessageDialog(null,""  , "Reporte Diario", JOptionPane.INFORMATION_MESSAGE);
 
                 break;
             case 6:

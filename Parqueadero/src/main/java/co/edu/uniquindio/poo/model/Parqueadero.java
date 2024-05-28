@@ -1,6 +1,7 @@
 package co.edu.uniquindio.poo.model;
 
 
+import javax.swing.*;
 import java.time.LocalDate;
 //import java.time.LocalTime;
 //import java.time.temporal.ChronoUnit;
@@ -238,12 +239,12 @@ public class Parqueadero {
         if (puesto != null && puesto.isOcupado()) {
             Vehiculo vehiculo = puesto.getVehiculo();
             for (Registro registro : registros) {
-                if (registro.getVehiculo().equals(vehiculo) && registro.getFechaSalida() == null) {
+
 
                     double valorPagar = calcularValorPorVehiculo(registro);
-                    System.out.println("Valor a pagar por el vehículo en el puesto (" + coordenadaI + ", " + coordenadaJ + "): $" + valorPagar);
+                    JOptionPane.showMessageDialog(null,"Valor a pagar por el vehículo en el puesto (" + coordenadaI + ", " + coordenadaJ + "): $" + valorPagar);
                     break;
-                }
+
             }
             puesto.liberarPuesto();
             System.out.println("Puesto en coordenadas (" + coordenadaI + ", " + coordenadaJ + ") ha sido liberado.");
@@ -281,25 +282,31 @@ public class Parqueadero {
      * y el total de dinero recogido durante el dia 
      **/
 
-   public void generarReporteDiario(LocalDate fecha) {
+    public void generarReporteDiario(LocalDate fecha) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
 
-        System.out.println("Reporte Diario - Fecha: " + fecha);
-        System.out.println("--------------------------------------------------");
+        StringBuilder reporte = new StringBuilder();
+        reporte.append("Reporte Diario - Fecha: ").append(fecha).append("\n");
+        reporte.append("--------------------------------------------------\n");
+
         for (Registro registro : registros) {
             if (registro.getFechaIngreso().equals(fecha)) {
                 cantidadVehiculos++;
-                totalRecaudado += calcularValorPorVehiculo(registro);
-                System.out.println("Vehículo " + registro.getVehiculo().getPlaca() +
-                        " - Hora de ingreso: " + registro.getHoraIngreso() +
-                        " - Hora de salida: " + registro.getHoraSalida() +
-                        " - Valor a pagar: $" + calcularValorPorVehiculo(registro));
+                double valorPagar = calcularValorPorVehiculo(registro);
+                totalRecaudado += valorPagar;
+                reporte.append("Vehículo ").append(registro.getVehiculo().getPlaca())
+                        .append(" - Hora de ingreso: ").append(registro.getHoraIngreso())
+                        .append(" - Hora de salida: ").append(registro.getHoraSalida())
+                        .append(" - Valor a pagar: $").append(valorPagar).append("\n");
             }
         }
-        System.out.println("Total vehículos: " + cantidadVehiculos);
-        System.out.println("Total recaudado: $" + totalRecaudado);
-        System.out.println("--------------------------------------------------");
+
+        reporte.append("--------------------------------------------------\n");
+        reporte.append("Total vehículos: ").append(cantidadVehiculos).append("\n");
+        reporte.append("Total recaudado: $").append(totalRecaudado).append("\n");
+
+        JOptionPane.showMessageDialog(null, reporte.toString(), "Reporte Diario", JOptionPane.INFORMATION_MESSAGE);
     }
     /**
      * @param  mes mes que del que se desea generar el reporte
@@ -310,26 +317,31 @@ public class Parqueadero {
      * 
      * 
      **/
-   public void generarReporteMensual(int mes, int anio) {
+    public void generarReporteMensual(int mes, int anio) {
         double totalRecaudado = 0.0;
         int cantidadVehiculos = 0;
 
-        System.out.println("Reporte Mensual - Mes: " + mes + " - Año: " + anio);
-        System.out.println("--------------------------------------------------");
+        StringBuilder reporte = new StringBuilder();
+        reporte.append("Reporte Mensual - Mes: ").append(mes).append(" - Año: ").append(anio).append("\n");
+        reporte.append("--------------------------------------------------\n");
+
         for (Registro registro : registros) {
             if (registro.getFechaIngreso().getMonthValue() == mes && registro.getFechaIngreso().getYear() == anio) {
                 cantidadVehiculos++;
                 double valorPagar = calcularValorPorVehiculo(registro);
                 totalRecaudado += valorPagar;
-                System.out.println("Vehículo " + registro.getVehiculo().getPlaca() +
-                        " - Fecha de ingreso: " + registro.getFechaIngreso() +
-                        " - Hora de ingreso: " + registro.getHoraIngreso() +
-                        " - Hora de salida: " + registro.getHoraSalida() +
-                        " - Valor a pagar: $" + valorPagar);
+                reporte.append("Vehículo ").append(registro.getVehiculo().getPlaca())
+                        .append(" - Fecha de ingreso: ").append(registro.getFechaIngreso())
+                        .append(" - Hora de ingreso: ").append(registro.getHoraIngreso())
+                        .append(" - Hora de salida: ").append(registro.getHoraSalida())
+                        .append(" - Valor a pagar: $").append(valorPagar).append("\n");
             }
         }
-        System.out.println("Total vehículos: " + cantidadVehiculos);
-        System.out.println("Total recaudado: $" + totalRecaudado);
-        System.out.println("--------------------------------------------------");
+
+        reporte.append("--------------------------------------------------\n");
+        reporte.append("Total vehículos: ").append(cantidadVehiculos).append("\n");
+        reporte.append("Total recaudado: $").append(totalRecaudado).append("\n");
+
+        JOptionPane.showMessageDialog(null, reporte.toString(), "Reporte Mensual", JOptionPane.INFORMATION_MESSAGE);
     }
 }
