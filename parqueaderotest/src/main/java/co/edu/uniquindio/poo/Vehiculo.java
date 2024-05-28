@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo.model;
+package co.edu.uniquindio.poo;
 
 public abstract class Vehiculo {
     private final Propietario propietario;
@@ -11,8 +11,10 @@ public abstract class Vehiculo {
         this.marca=marca;
         this.placa = placa;
         this.modelo = modelo;
-        assert placa != null && placa.isBlank();
-        assert modelo != null && modelo.isBlank();
+        assert placa != null && !placa.isBlank() : "La placa del vehículo no debe ser nula o vacía";
+        assert marca != null && !marca.isBlank() : "La marca del vehículo no debe ser nula o vacía";
+        assert modelo != null && !modelo.isBlank() : "El modelo del vehículo no debe ser nulo o vacío";
+        assert propietario != null : "El propietario del vehículo no debe ser nulo";
 
     }
 

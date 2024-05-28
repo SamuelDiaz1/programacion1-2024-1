@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo.model;
+package co.edu.uniquindio.poo;
 
 public class Puesto {
     private final int coordenadaI;

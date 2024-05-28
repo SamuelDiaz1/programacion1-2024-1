@@ -33,6 +33,7 @@ public class ParqueaderoTest {
         assertEquals(6, parqueadero.getFilas());
         assertEquals(6, parqueadero.getColumnas());
 
+
         LOG.info("Finalizando test ");
     }
     @Test
@@ -41,7 +42,28 @@ public class ParqueaderoTest {
         
         assertThrows(Throwable.class, () -> new Parqueadero(null, 0, 0, 0,0));
         LOG.info("Finalizando test");
+    }
+    @Test
+    public void registrarVehiculoRepetido(){
+        Parqueadero parqueadero= new Parqueadero("parking", 5000, 2000, 6, 6);
+        LOG.info("Inicio prueba agregar vehiculo");
+        Propietario propietario=new Propietario("Rodolfo", "1234567");
+        Carro carro1=new Carro(propietario, "BMW", "2012", "XRT122");
+        Carro carro2=new Carro(propietario, "BMW", "2012", "XRT122");
+        parqueadero.registrarVehiculo(carro1);
+        assertThrows(Throwable.class,()->parqueadero.registrarVehiculo(carro2) );
+        
+    }
+    @Test
+    public void registraVehiculoNulo(){
+        LOG.info("Inicio prueba registrar vehiculo nulo");
+        Parqueadero parqueadero= new Parqueadero("parking", 5000, 2000, 6, 6);
 
+        Carro carro= new Carro(null, null, null, "null");
+        assertThrows(Throwable.class, ()-> parqueadero.registrarVehiculo(carro));
+        LOG.info("Inicio prueba registrar vehiculo nulo");
 
     }
+
+
 }

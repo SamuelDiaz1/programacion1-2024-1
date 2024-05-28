@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo.model;
+package co.edu.uniquindio.poo;
 
 public class Propietario {
     private final String nombre;
@@ -6,11 +6,13 @@ public class Propietario {
 
 
     public Propietario(String nombre, String cedula) {
-        this.nombre = nombre;
-        this.cedula = cedula;
-        assert nombre!=null && nombre.isBlank():"El nombre debe ser diferente de null";
-        assert cedula !=null && cedula.isBlank():"El numero de cedula debe ser diferente de null";
+       assert nombre!=null && !cedula.isBlank() :"El nombre debe ser diferente de null";
+        assert cedula !=null && !cedula.isBlank():"El numero de cedula debe ser diferente de null";
 
+        this.nombre = nombre;
+
+        this.cedula = cedula;
+       
     }
 
     public String getNombre() {

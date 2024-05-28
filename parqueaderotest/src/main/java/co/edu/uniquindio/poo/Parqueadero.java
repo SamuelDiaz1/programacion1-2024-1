@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo.model;
+package co.edu.uniquindio.poo;
 
 
 import javax.swing.*;
@@ -10,6 +10,7 @@ import java.util.Collection;
 //import java.util.HashMap;
 import java.util.LinkedList;
 //import java.util.Map;
+import java.util.function.Predicate;
 
 public class Parqueadero {
     private final String nombre;
@@ -26,6 +27,7 @@ public class Parqueadero {
 
 
     public Parqueadero(String nombre, int tarifaHoraCarro, int tarifaHoraMoto, int filas, int columnas) {
+       
         this.nombre = nombre;
         this.listaPuestos = new LinkedList<>();
         this.tarifaHoraCarro = tarifaHoraCarro;
@@ -37,15 +39,24 @@ public class Parqueadero {
         this.filas= filas;
         this.columnas= columnas;
         //this.vehiculosIngresados = new HashMap<>();
-
-        inicializarPuestos();
-        assert nombre != null && nombre.isBlank() : "El nombre debe ser diferente de null";
+        assert nombre != null && !nombre.isBlank() : "El nombre debe ser diferente de null";
         assert tarifaHoraMoto > 0 : "La tarifa de la moto debe ser mayor a 0";
         assert tarifaHoraCarro > 0 : "La tarifa de la moto  debe ser mayor a 0";
+        inicializarPuestos();
+        
     }
 
     public Puesto[][] getPuestos() {
         return puestos;
+    }
+    
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
     }
 
     public Collection<Vehiculo> getVehiculosAux() {return vehiculosAux;}
@@ -97,11 +108,16 @@ public class Parqueadero {
     public boolean existeVehiculo (String placa){
         return obtenerVehiculo(placa) != null;
     }
+    private boolean verificarPlacaExiste(String placa){
+        Predicate<Vehiculo> condicion= vehiculo ->vehiculo.getPlaca().equals(placa);
+        return vehiculos.stream().filter(condicion).findAny().isPresent();
+    }
     /**
      * Registra un vehículo en el parqueadero.
      * @param vehiculo El vehículo a registrar.
      */
     public void registrarVehiculo (Vehiculo vehiculo){
+;
         if (vehiculo != null && !existeVehiculo(vehiculo.getPlaca())){
             vehiculos.add(vehiculo);
             vehiculosAux.add(vehiculo);
@@ -239,7 +255,7 @@ public class Parqueadero {
         if (puesto != null && puesto.isOcupado()) {
             Vehiculo vehiculo = puesto.getVehiculo();
             for (Registro registro : registros) {
-
+                
 
                     double valorPagar = calcularValorPorVehiculo(registro);
                     JOptionPane.showMessageDialog(null,"Valor a pagar por el vehículo en el puesto (" + coordenadaI + ", " + coordenadaJ + "): $" + valorPagar);
