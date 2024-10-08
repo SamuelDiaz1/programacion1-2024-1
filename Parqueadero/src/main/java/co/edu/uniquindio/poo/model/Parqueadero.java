@@ -224,8 +224,11 @@ public class Parqueadero {
         Puesto puesto = getPuesto(i,j);
         if (puesto != null && puesto.isOcupado()) {
             Vehiculo vehiculo = puesto.getVehiculo();
+            JOptionPane.showMessageDialog(null,"EL propietario es:"+puesto.getVehiculo().getPropietario());
             return vehiculo.getPropietario();
+
         }
+
         return null;
 
     }

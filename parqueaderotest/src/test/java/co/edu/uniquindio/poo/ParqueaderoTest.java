@@ -59,11 +59,12 @@ public class ParqueaderoTest {
         LOG.info("Inicio prueba registrar vehiculo nulo");
         Parqueadero parqueadero= new Parqueadero("parking", 5000, 2000, 6, 6);
 
-        Carro carro= new Carro(null, null, null, "null");
+        Carro carro= new Carro(null, null, null, null);
         assertThrows(Throwable.class, ()-> parqueadero.registrarVehiculo(carro));
         LOG.info("Inicio prueba registrar vehiculo nulo");
 
     }
+    
 
 
 }
